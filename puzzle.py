@@ -44,6 +44,20 @@ knowledge1 = And(
 # A says "We are the same kind."
 # B says "We are of different kinds."
 knowledge2 = And(
+    Or(ATruthoraptor, ALieosaurus),
+    Not(And(ATruthoraptor, ALieosaurus)),
+    Or(BTruthoraptor, BLieosaurus),
+    Not(And(BTruthoraptor, BLieosaurus)),
+
+    # A says they're the same kind
+    # First implication is if A is telling truth, second implication is if A is lying
+    Implication(ATruthoraptor, Or(And(ATruthoraptor, BTruthoraptor), And(ALieosaurus, BLieosaurus))),
+    Implication(ALieosaurus, Not(Or(And(ATruthoraptor, BTruthoraptor), And(ALieosaurus, BLieosaurus)))),
+
+    # B says they're NOT the same kind
+    # First implication is if B is telling truth, second implication is if B is lying
+    Implication(BTruthoraptor, Or(And(BTruthoraptor, ALieosaurus), And(BLieosaurus, ATruthoraptor))),
+    Implication(BLieosaurus, Not(Or(And(BTruthoraptor, ALieosaurus), And(BLieosaurus, ATruthoraptor))))
 )
 
 # Puzzle 3
@@ -52,7 +66,7 @@ knowledge2 = And(
 # B says "C is a Lieosaurus."
 # C says "A is a Truthoraptor."
 knowledge3 = And(
-    # TODO
+
 )
 
 
