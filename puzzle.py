@@ -11,34 +11,39 @@ CLieosaurus = Symbol("C is a Lieosaurus")
 
 # Puzzle 0
 # A says "I am both a Truthoraptor and a Lieosaurus."
-ADinosaurSays0 = And(ATruthoraptor, ALieosaurus)
-
 knowledge0 = And(
-    
-    #TODO
-    #A is either a Liosaurus or a Truthoraptor
+    # Knowledge Base
     Or(ATruthoraptor, ALieosaurus),
-    
-    
-    #A is telling the truth AND thus a truthoraptor
-    #OR.
-    #A is lying AND thus a liosaurus
-    Or(And(ATruthoraptor, ADinosaurSays0), 
-       And(ALieosaurus, Not(ADinosaurSays0)))
+    Not(And(ATruthoraptor, ALieosaurus)),
+
+    # If A is telling the truth, A is both truthoraptor and lieosaurus
+    Implication(ATruthoraptor, And(ATruthoraptor, ALieosaurus)),
+
+    # If A is not telling the truth, A is not both truthoraptor and lieosaurus
+    Implication(ALieosaurus, Not(And(ATruthoraptor, ALieosaurus)))
 )
 
 # Puzzle 1
 # A says "We are both Lieosauruss."
 # B says nothing.
 knowledge1 = And(
-    # TODO
+    # Knowledge Base
+    Or(ATruthoraptor, ALieosaurus),
+    Or(BTruthoraptor, BLieosaurus),
+    Not(And(ATruthoraptor, ALieosaurus)),
+    Not(And(BTruthoraptor, BLieosaurus)),
+
+    # If A is telling the truth, both A and B are lieosaurus
+    Implication(ATruthoraptor, And(ALieosaurus, BLieosaurus)),
+
+    # If A is lying, the statement A is lieosaurus and B is lieosaurus is false
+    Implication(ALieosaurus, Not(And(ALieosaurus, BLieosaurus)))
 )
 
 # Puzzle 2
 # A says "We are the same kind."
 # B says "We are of different kinds."
 knowledge2 = And(
-    # TODO
 )
 
 # Puzzle 3
