@@ -76,7 +76,7 @@ knowledge3 = And(
     #if A is a Truthoraptor, A can be a truthoraptor or a lieosaurus 
     #If A is a ALieosaurus, then it can't be a Truthoraptor and a Lieosaurus.
     Implication(ATruthoraptor,Or(ATruthoraptor,ALieosaurus)),
-    Implication(ALieosaurus,Not(And(ATruthoraptor,ALieosaurus))),
+    Implication(ALieosaurus,Not(Or(ATruthoraptor,ALieosaurus))),
     
    
     #if B is a Truthoraptor than C is a Lieasaurus
