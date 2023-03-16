@@ -2,6 +2,7 @@
 # Names:
 # Daniel Cazarez
 # Lea Albano
+# Jennah Kanan
 
 from logic import *
 
