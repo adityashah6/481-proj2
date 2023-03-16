@@ -1,3 +1,7 @@
+# CPSC 481 Project 2
+# Names:
+# Daniel Cazarez
+
 from logic import *
 
 ATruthoraptor = Symbol("A is a Truthoraptor")
@@ -52,13 +56,17 @@ knowledge2 = And(
 
     # A says they're the same kind
     # First implication is if A is telling truth, second implication is if A is lying
-    Implication(ATruthoraptor, Or(And(ATruthoraptor, BTruthoraptor), And(ALieosaurus, BLieosaurus))),
-    Implication(ALieosaurus, Not(Or(And(ATruthoraptor, BTruthoraptor), And(ALieosaurus, BLieosaurus)))),
+    Implication(ATruthoraptor, Or(
+        And(ATruthoraptor, BTruthoraptor), And(ALieosaurus, BLieosaurus))),
+    Implication(ALieosaurus, Not(
+        Or(And(ATruthoraptor, BTruthoraptor), And(ALieosaurus, BLieosaurus)))),
 
     # B says they're NOT the same kind
     # First implication is if B is telling truth, second implication is if B is lying
-    Implication(BTruthoraptor, Or(And(BTruthoraptor, ALieosaurus), And(BLieosaurus, ATruthoraptor))),
-    Implication(BLieosaurus, Not(Or(And(BTruthoraptor, ALieosaurus), And(BLieosaurus, ATruthoraptor))))
+    Implication(BTruthoraptor, Or(And(BTruthoraptor, ALieosaurus),
+                And(BLieosaurus, ATruthoraptor))),
+    Implication(BLieosaurus, Not(
+        Or(And(BTruthoraptor, ALieosaurus), And(BLieosaurus, ATruthoraptor))))
 )
 
 # Puzzle 3
@@ -67,35 +75,37 @@ knowledge2 = And(
 # B says "C is a Lieosaurus."
 # C says "A is a Truthoraptor."
 knowledge3 = And(
-    Or(ATruthoraptor, ALieosaurus), 
+    # Knowledge base
+    Or(ATruthoraptor, ALieosaurus),
     Not(And(ATruthoraptor, ALieosaurus)),
-    Or(BTruthoraptor, BLieosaurus), 
+    Or(BTruthoraptor, BLieosaurus),
     Not(And(BTruthoraptor, BLieosaurus)),
-    Or(CTruthoraptor, CLieosaurus), 
+    Or(CTruthoraptor, CLieosaurus),
     Not(And(CTruthoraptor, CLieosaurus)),
-    
-    #if A is a Truthoraptor, A can be a truthoraptor or a lieosaurus 
-    #If A is a ALieosaurus, then it can't be a Truthoraptor or a Lieosaurus.
-    Implication(ATruthoraptor,Or(ATruthoraptor,ALieosaurus)),
-    Implication(ALieosaurus,Not(Or(ATruthoraptor,ALieosaurus))),
-    
-   
-    #if B is a Truthoraptor than C is a Lieasaurus
-    #if B is a Lieosaurus than C can't be a Lieosaurus 
-    Implication(BTruthoraptor,CLieosaurus),
-    Implication(BLieosaurus,Not(CLieosaurus)),
-    
-    
-    #if C is a truthoraptor than A is a truthoraptor
-    #if C is a liesaurus then A is not a Truthoraptor
-    Implication(CTruthoraptor,ATruthoraptor),
-    Implication(CLieosaurus,Not(ATruthoraptor))
+
+    # if A is a Truthoraptor, A can be a truthoraptor or a lieosaurus
+    # If A is a ALieosaurus, then it can't be a Truthoraptor or a Lieosaurus.
+    Implication(ATruthoraptor, Or(ATruthoraptor, ALieosaurus)),
+    Implication(ALieosaurus, Not(Or(ATruthoraptor, ALieosaurus))),
+
+
+    # if B is a Truthoraptor than C is a Lieasaurus
+    # if B is a Lieosaurus than C can't be a Lieosaurus
+    Implication(BTruthoraptor, CLieosaurus),
+    Implication(BLieosaurus, Not(CLieosaurus)),
+
+
+    # if C is a truthoraptor than A is a truthoraptor
+    # if C is a liesaurus then A is not a Truthoraptor
+    Implication(CTruthoraptor, ATruthoraptor),
+    Implication(CLieosaurus, Not(ATruthoraptor))
 
 )
 
 
 def main():
-    symbols = [ATruthoraptor, ALieosaurus, BTruthoraptor, BLieosaurus, CTruthoraptor, CLieosaurus]
+    symbols = [ATruthoraptor, ALieosaurus, BTruthoraptor,
+               BLieosaurus, CTruthoraptor, CLieosaurus]
     puzzles = [
         ("Puzzle 0", knowledge0),
         ("Puzzle 1", knowledge1),
