@@ -44,6 +44,7 @@ knowledge1 = And(
 # A says "We are the same kind."
 # B says "We are of different kinds."
 knowledge2 = And(
+    # Knowledge base
     Or(ATruthoraptor, ALieosaurus),
     Not(And(ATruthoraptor, ALieosaurus)),
     Or(BTruthoraptor, BLieosaurus),
