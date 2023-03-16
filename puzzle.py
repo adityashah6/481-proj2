@@ -1,6 +1,7 @@
 # CPSC 481 Project 2
 # Names:
 # Daniel Cazarez
+# Lea Albano
 
 from logic import *
 
