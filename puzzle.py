@@ -3,7 +3,7 @@
 # Daniel Cazarez
 # Lea Albano
 # Jennah Kanan
-# Aditya Shah 
+# Aditya Shah
 
 from logic import *
 
@@ -90,6 +90,10 @@ knowledge3 = And(
     # If A is a Lieosaurus, then A is not a Truthoraptor or a Lieosaurus.
     Implication(ATruthoraptor, Or(ATruthoraptor, ALieosaurus)),
     Implication(ALieosaurus, Not(Or(ATruthoraptor, ALieosaurus))),
+
+    # B says "A said 'I am a Lieosaurus'"
+    Or(Implication(BTruthoraptor, Or(Implication(ATruthoraptor, ALieosaurus), Implication(ALieosaurus, Not(ALieosaurus)))),
+        Implication(BLieosaurus, Not(Or(Implication(ATruthoraptor, ALieosaurus), Implication(ALieosaurus, Not(ALieosaurus)))))),
 
 
     # if B is a Truthoraptor than C is a Lieasaurus
